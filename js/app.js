@@ -24,7 +24,10 @@ document
   .addEventListener("click", function (evsent) {
     const digit = evsent.target.innerText;
     if (isNaN(digit)) {
-      console.log("Not");
+      if (digit === "C") {
+        const typead = document.getElementById("typedPin");
+        typead.value = "";
+      }
     } else {
       const typead = document.getElementById("typedPin");
       typead.value = typead.value + digit;
@@ -35,8 +38,13 @@ document.getElementById("sumbits").addEventListener("click", function () {
   const pinInput = document.getElementById("pin").value;
   const typead = document.getElementById("typedPin").value;
   if (pinInput === typead) {
-    document.getElementById("incrate").style.display = "block";
+    status("incrate", "dont");
   } else {
-    document.getElementById("dont").style.display = "block";
+    status("dont", "incrate");
   }
 });
+
+function status(right, notRight) {
+  document.getElementById(right).style.display = "block";
+  document.getElementById(notRight).style.display = "none";
+}
